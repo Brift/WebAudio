@@ -274,8 +274,16 @@ Demo.prototype = {
 
   setupObjects : function() {
     this.setupAudio();
+	
+	var sphereGeo = new THREE.SphereGeometry(3, 10, 10);
+	var sphereMat = new THREE.MeshLambertMaterial({color: 0x009900});
+	var sphere = new THREE.Mesh(sphereGeo, sphereMat);
+	sphere.position.x = 20;
+	sphere.position.z = -20;
+	this.sphere = sphere;
+	this.scene.add(sphere);
 
-    var cubeGeo = new THREE.CubeGeometry(1.20,1.20,2.00);
+    var cubeGeo = new THREE.CubeGeometry(1.20,1.20,1.20);
     var cubeMat = new THREE.MeshLambertMaterial({color: 0x0000FF});
     var cube = new THREE.Mesh(cubeGeo, cubeMat);
     this.cube = cube;
@@ -300,7 +308,7 @@ Demo.prototype = {
     plane.rotation.x = -Math.PI/2;
     this.scene.add(plane);
 
-    cube.sound = this.loadSound('sounds/flight.wav');
+    cube.sound = this.loadSound('sounds/flight.ogg');
     if (this.orientationEnabled) {
       this.createSoundCone(cube, 1.0, 3.8, 0.1);
     }
