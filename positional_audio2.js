@@ -276,7 +276,7 @@ Demo.prototype = {
     this.setupAudio();
 
     var cubeGeo = new THREE.CubeGeometry(1.20,1.20,1.20);
-    var cubeMat = new THREE.MeshLambertMaterial({color: 0x009999});
+    var cubeMat = new THREE.MeshLambertMaterial({color: 0x0000FF});
     var cube = new THREE.Mesh(cubeGeo, cubeMat);
     this.cube = cube;
     this.scene.add(cube);
@@ -288,20 +288,13 @@ Demo.prototype = {
     this.light = light;
     this.scene.add(light);
 	
-	var light2 = new THREE.PointLight(0xFFFFFF);
-    light2.position.x = -4.00;
-    light2.position.y = 4.00;
-    light2.position.z = 4.00;
-    this.light2 = light2;
-    this.scene.add(light2);
-	
 	var ambientlight = new THREE.AmbientLight( 0x404040 );
 	this.ambientlight = ambientlight;
 	this.scene.add(ambientlight);
 
     var plane = new THREE.Mesh(
       new THREE.PlaneGeometry(2000, 2000, 100, 100),
-      new THREE.MeshLambertMaterial({color: 0x8888ff, wireframe: true, wireframeLinewidth: 2})
+      new THREE.MeshLambertMaterial({color: 0x8888ff, wireframe: true})
     );
     plane.position.y = -5.0;
     plane.rotation.x = -Math.PI/2;
@@ -472,8 +465,9 @@ Demo.prototype = {
     var cz = Math.sin(t/3000) * 5.00;
     if (this.velocityEnabled && !this.orientationEnabled) {
       cx = Math.cos(t/1500) * 5.00;
-      cz = Math.sin(t/1500) * 500.00+-100;
+      cz = Math.sin(t/1500) * 50.00+-10;
     }
+    var cy = Math.sin(t/600) * 0;
 
     this.setPosition(this.cube, cx, cy, cz, dt/1000);
 
